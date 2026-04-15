@@ -8,14 +8,21 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
   <div class="container">
-    <h1>My Bookmarks</h1>
+    <header class="hero">
+      <p class="eyebrow">Neural Vault</p>
+      <h1>Future Bookmarks</h1>
+      <p class="subtitle">Collect, tag, and launch your favorite links from a sleek command-center interface.</p>
+    </header>
 
     <form id="bookmark-form">
       <input type="text" id="title" placeholder="Title (e.g. GitHub)" required>
       <input type="url" id="url" placeholder="URL (e.g. https://github.com)" required>
       <input type="text" id="tag" placeholder="Tag (e.g. work, learning)">
-      <button type="submit">Add Bookmark</button>
+      <button type="submit">Add to Vault</button>
     </form>
 
     <div id="tags-filter" class="tags-filter"></div>

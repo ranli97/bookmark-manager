@@ -65,7 +65,7 @@ function renderBookmarks() {
     : allBookmarks.filter(b => b.tag === activeTag);
 
   if (filtered.length === 0) {
-    bookmarksList.innerHTML = '<p style="color: #64748b; text-align: center;">No bookmarks yet. Add one above!</p>';
+    bookmarksList.innerHTML = '<p class="empty-state">No bookmarks in this channel yet. Add one above!</p>';
     return;
   }
 
