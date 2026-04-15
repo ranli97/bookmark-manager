@@ -1,10 +1,23 @@
 const express = require('express');
 const Database = require('better-sqlite3');
 const path = require('path');
+const fs = require('fs');
 
 // Create the app and database
 const app = express();
-const db = new Database('bookmarks.db');
+const dataDir = process.env.RENDER ? '/tmp' : __dirname;
+const dbPath = path.join(dataDir, 'bookmarks.db');
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
+
+let db;
+try {
+  db = new Database(dbPath);
+} catch (error) {
+  console.error('Failed to open SQLite database:', error);
+  process.exit(1);
+}
 
 // Middleware - tells Express to understand JSON and serve static files
 app.use(express.json());
@@ -46,7 +59,8 @@ app.delete('/api/bookmarks/:id', (req, res) => {
 });
 
 // Start the server
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Using SQLite database at ${dbPath}`);
 });
